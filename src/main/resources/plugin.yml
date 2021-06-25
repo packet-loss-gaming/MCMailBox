@@ -1,0 +1,5 @@
+name: MCMailBox
+main: gg.packetloss.mcmailbox.MCMailBoxPlugin
+version: ${projectVersion}
+load: STARTUP
+api-version: 1.16
