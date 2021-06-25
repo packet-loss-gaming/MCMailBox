@@ -48,6 +48,14 @@ public class MailBoxUpdateEvent extends Event {
         return newValue;
     }
 
+    public boolean isNowFalse() {
+        return newValue.isBlank() || newValue.equals("0");
+    }
+
+    public boolean isNowTrue() {
+        return !isNowFalse();
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlers;

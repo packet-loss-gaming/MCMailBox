@@ -20,11 +20,14 @@
 
 package gg.packetloss.mcmailbox;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import static org.bukkit.Bukkit.getPluginManager;
 
 public class MCMailBoxPlugin extends JavaPlugin {
     private final Map<String, String> keyValueStore = new HashMap<>();
@@ -64,7 +67,12 @@ public class MCMailBoxPlugin extends JavaPlugin {
     }
 
     public void putValue(String key, String value) {
-        new MailBoxUpdateEvent(key, getValue(key), value);
-        keyValueStore.put(key, value);
+        MailBoxUpdateEvent event = new MailBoxUpdateEvent(key, getValue(key), value);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isNowTrue()) {
+            keyValueStore.put(key, value);
+        } else {
+            keyValueStore.remove(key);
+        }
     }
 }

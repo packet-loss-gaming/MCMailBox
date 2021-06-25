@@ -38,7 +38,7 @@ dependencies {
 }
 
 group = 'gg.packetloss'
-version = '1.16.5.0'
+version = '1.16.5.1'
 
 java {
     toolchain {
